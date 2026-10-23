@@ -6,6 +6,20 @@
 .agents/
 .codex/
 graphify-out/
+# Local agent tools and preparation notes are not exam deliverables.
+/.graphifyignore
+/AGENTS.md
+/GRAPHIFY_TH.md
+/PROJECT_CONTEXT.md
+/SKILLS.md
+/UI_UX_SKILLS_TH.md
+/skills-lock.json
+/ui-ux-skills-lock.json
+/DESIGN.md
+/PROJECT_BRIEF_TH.md
+/START_HERE_TH.md
+/TOPIC_OPTIONS_TH.md
+/WORKFLOW_TH.md
 __pycache__/
 *.py[cod]
 data/incoming/*
