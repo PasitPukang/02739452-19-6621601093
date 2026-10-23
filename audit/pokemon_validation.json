@@ -1,0 +1,531 @@
+{
+  "checked_at": "2026-10-23T06:37:18.095595+00:00",
+  "initial": {
+    "canonical_rows": 151,
+    "source_observations": 453,
+    "content_sha256": "1eb8a65add3e092200339818fa669e0ca4991dc6ea30d6a7b9d3a3ac3caccc20"
+  },
+  "cases": [
+    {
+      "name": "rerun",
+      "run": {
+        "run_id": "rerun_063718",
+        "started_at": "2026-10-23T06:37:22.934558+00:00",
+        "finished_at": "2026-10-23T06:37:36.216000+00:00",
+        "status": "SUCCESS",
+        "scenario": {
+          "demo_fail_source": "none",
+          "demo_bad_quality": false
+        },
+        "summary": {
+          "input_rows": 453,
+          "unique_rows": 151,
+          "duplicates_removed": 302,
+          "conflict_rows": 0,
+          "successful_sources": [
+            "pokeapi",
+            "pokemondb",
+            "showdown"
+          ],
+          "missing_ids": [],
+          "errors": [],
+          "passed": true
+        }
+      },
+      "before": {
+        "canonical_rows": 151,
+        "source_observations": 453,
+        "content_sha256": "1eb8a65add3e092200339818fa669e0ca4991dc6ea30d6a7b9d3a3ac3caccc20"
+      },
+      "after": {
+        "canonical_rows": 151,
+        "source_observations": 453,
+        "content_sha256": "1eb8a65add3e092200339818fa669e0ca4991dc6ea30d6a7b9d3a3ac3caccc20"
+      },
+      "task_states": {
+        "start": "success",
+        "source_pokemondb.extract": "success",
+        "source_pokemondb.transform": "success",
+        "source_pokeapi.transform": "success",
+        "merge_validate": "success",
+        "finish": "success",
+        "source_showdown.extract": "success",
+        "quarantine": "skipped",
+        "quality_route": "success",
+        "source_showdown.transform": "success",
+        "source_pokeapi.extract": "success",
+        "load_postgres": "success"
+      },
+      "task_timings": {
+        "start": {
+          "start": "2026-10-23 06:37:22.723624+00:00",
+          "end": "2026-10-23 06:37:22.967015+00:00"
+        },
+        "source_pokemondb.extract": {
+          "start": "2026-10-23 06:37:23.826732+00:00",
+          "end": "2026-10-23 06:37:26.535412+00:00"
+        },
+        "source_pokemondb.transform": {
+          "start": "2026-10-23 06:37:27.753946+00:00",
+          "end": "2026-10-23 06:37:28.809667+00:00"
+        },
+        "source_pokeapi.transform": {
+          "start": "2026-10-23 06:37:30.887422+00:00",
+          "end": "2026-10-23 06:37:32.265961+00:00"
+        },
+        "merge_validate": {
+          "start": "2026-10-23 06:37:33.047317+00:00",
+          "end": "2026-10-23 06:37:33.442921+00:00"
+        },
+        "finish": {
+          "start": "2026-10-23 06:37:35.963935+00:00",
+          "end": "2026-10-23 06:37:36.247908+00:00"
+        },
+        "source_showdown.extract": {
+          "start": "2026-10-23 06:37:23.832759+00:00",
+          "end": "2026-10-23 06:37:26.336160+00:00"
+        },
+        "quarantine": {
+          "start": "2026-10-23 06:37:34.329627+00:00",
+          "end": "2026-10-23 06:37:34.329627+00:00"
+        },
+        "quality_route": {
+          "start": "2026-10-23 06:37:34.132535+00:00",
+          "end": "2026-10-23 06:37:34.364152+00:00"
+        },
+        "source_showdown.transform": {
+          "start": "2026-10-23 06:37:27.762939+00:00",
+          "end": "2026-10-23 06:37:28.295559+00:00"
+        },
+        "source_pokeapi.extract": {
+          "start": "2026-10-23 06:37:23.817661+00:00",
+          "end": "2026-10-23 06:37:30.032628+00:00"
+        },
+        "load_postgres": {
+          "start": "2026-10-23 06:37:34.857679+00:00",
+          "end": "2026-10-23 06:37:35.357193+00:00"
+        }
+      },
+      "sources": [
+        {
+          "run_id": "rerun_063718",
+          "source": "pokeapi",
+          "status": "SUCCESS",
+          "row_count": 151,
+          "message": "",
+          "started_at": "2026-10-23T06:37:24.085126+00:00",
+          "finished_at": "2026-10-23T06:37:32.113412+00:00"
+        },
+        {
+          "run_id": "rerun_063718",
+          "source": "pokemondb",
+          "status": "SUCCESS",
+          "row_count": 151,
+          "message": "",
+          "started_at": "2026-10-23T06:37:24.097812+00:00",
+          "finished_at": "2026-10-23T06:37:28.763730+00:00"
+        },
+        {
+          "run_id": "rerun_063718",
+          "source": "showdown",
+          "status": "SUCCESS",
+          "row_count": 151,
+          "message": "",
+          "started_at": "2026-10-23T06:37:24.090428+00:00",
+          "finished_at": "2026-10-23T06:37:28.241172+00:00"
+        }
+      ]
+    },
+    {
+      "name": "partial",
+      "run": {
+        "run_id": "partial_063718",
+        "started_at": "2026-10-23T06:37:44.505565+00:00",
+        "finished_at": "2026-10-23T06:38:01.268325+00:00",
+        "status": "PARTIAL",
+        "scenario": {
+          "demo_fail_source": "pokeapi",
+          "demo_bad_quality": false
+        },
+        "summary": {
+          "input_rows": 302,
+          "unique_rows": 151,
+          "duplicates_removed": 151,
+          "conflict_rows": 0,
+          "successful_sources": [
+            "pokemondb",
+            "showdown"
+          ],
+          "missing_ids": [],
+          "errors": [],
+          "passed": true
+        }
+      },
+      "before": {
+        "canonical_rows": 151,
+        "source_observations": 453,
+        "content_sha256": "1eb8a65add3e092200339818fa669e0ca4991dc6ea30d6a7b9d3a3ac3caccc20"
+      },
+      "after": {
+        "canonical_rows": 151,
+        "source_observations": 453,
+        "content_sha256": "3a281b54c6523770566a8d484041c49361d0dc9a37dc74359ca1891fac3a11ee"
+      },
+      "task_states": {
+        "source_showdown.extract": "success",
+        "start": "success",
+        "source_showdown.transform": "success",
+        "source_pokemondb.extract": "success",
+        "source_pokemondb.transform": "success",
+        "source_pokeapi.extract": "failed",
+        "quarantine": "skipped",
+        "merge_validate": "success",
+        "source_pokeapi.transform": "success",
+        "quality_route": "success",
+        "load_postgres": "success",
+        "finish": "success"
+      },
+      "task_timings": {
+        "source_showdown.extract": {
+          "start": "2026-10-23 06:37:44.976144+00:00",
+          "end": "2026-10-23 06:37:47.455613+00:00"
+        },
+        "start": {
+          "start": "2026-10-23 06:37:44.268960+00:00",
+          "end": "2026-10-23 06:37:44.535441+00:00"
+        },
+        "source_showdown.transform": {
+          "start": "2026-10-23 06:37:47.857187+00:00",
+          "end": "2026-10-23 06:37:48.219456+00:00"
+        },
+        "source_pokemondb.extract": {
+          "start": "2026-10-23 06:37:44.976066+00:00",
+          "end": "2026-10-23 06:37:47.821969+00:00"
+        },
+        "source_pokemondb.transform": {
+          "start": "2026-10-23 06:37:48.909362+00:00",
+          "end": "2026-10-23 06:37:49.474728+00:00"
+        },
+        "source_pokeapi.extract": {
+          "start": "2026-10-23 06:37:56.115196+00:00",
+          "end": "2026-10-23 06:37:56.372053+00:00"
+        },
+        "quarantine": {
+          "start": "2026-10-23 06:37:59.227258+00:00",
+          "end": "2026-10-23 06:37:59.227258+00:00"
+        },
+        "merge_validate": {
+          "start": "2026-10-23 06:37:57.934463+00:00",
+          "end": "2026-10-23 06:37:58.290063+00:00"
+        },
+        "source_pokeapi.transform": {
+          "start": "2026-10-23 06:37:56.807796+00:00",
+          "end": "2026-10-23 06:37:57.061393+00:00"
+        },
+        "quality_route": {
+          "start": "2026-10-23 06:37:59.011388+00:00",
+          "end": "2026-10-23 06:37:59.277307+00:00"
+        },
+        "load_postgres": {
+          "start": "2026-10-23 06:38:00.168397+00:00",
+          "end": "2026-10-23 06:38:00.649465+00:00"
+        },
+        "finish": {
+          "start": "2026-10-23 06:38:01.007830+00:00",
+          "end": "2026-10-23 06:38:01.298149+00:00"
+        }
+      },
+      "sources": [
+        {
+          "run_id": "partial_063718",
+          "source": "pokeapi",
+          "status": "FAILED",
+          "row_count": 0,
+          "message": "ConnectionError: Demonstration: simulated pokeapi outage",
+          "started_at": "2026-10-23T06:37:56.341530+00:00",
+          "finished_at": "2026-10-23T06:37:56.349080+00:00"
+        },
+        {
+          "run_id": "partial_063718",
+          "source": "pokemondb",
+          "status": "SUCCESS",
+          "row_count": 151,
+          "message": "",
+          "started_at": "2026-10-23T06:37:45.227001+00:00",
+          "finished_at": "2026-10-23T06:37:49.428141+00:00"
+        },
+        {
+          "run_id": "partial_063718",
+          "source": "showdown",
+          "status": "SUCCESS",
+          "row_count": 151,
+          "message": "",
+          "started_at": "2026-10-23T06:37:45.227446+00:00",
+          "finished_at": "2026-10-23T06:37:48.185895+00:00"
+        }
+      ]
+    },
+    {
+      "name": "quality",
+      "run": {
+        "run_id": "quality_063718",
+        "started_at": "2026-10-23T06:38:09.183525+00:00",
+        "finished_at": "2026-10-23T06:38:21.666370+00:00",
+        "status": "REJECTED",
+        "scenario": {
+          "demo_fail_source": "none",
+          "demo_bad_quality": true
+        },
+        "summary": {
+          "input_rows": 453,
+          "unique_rows": 151,
+          "duplicates_removed": 302,
+          "conflict_rows": 0,
+          "successful_sources": [
+            "pokeapi",
+            "pokemondb",
+            "showdown"
+          ],
+          "missing_ids": [],
+          "errors": [
+            "Merged #1: total differs from sum of six stats"
+          ],
+          "passed": false
+        }
+      },
+      "before": {
+        "canonical_rows": 151,
+        "source_observations": 453,
+        "content_sha256": "3a281b54c6523770566a8d484041c49361d0dc9a37dc74359ca1891fac3a11ee"
+      },
+      "after": {
+        "canonical_rows": 151,
+        "source_observations": 453,
+        "content_sha256": "3a281b54c6523770566a8d484041c49361d0dc9a37dc74359ca1891fac3a11ee"
+      },
+      "task_states": {
+        "source_pokemondb.transform": "success",
+        "source_showdown.transform": "success",
+        "source_pokeapi.transform": "success",
+        "merge_validate": "success",
+        "load_postgres": "skipped",
+        "quality_route": "success",
+        "quarantine": "success",
+        "finish": "success",
+        "start": "success",
+        "source_showdown.extract": "success",
+        "source_pokemondb.extract": "success",
+        "source_pokeapi.extract": "success"
+      },
+      "task_timings": {
+        "source_pokemondb.transform": {
+          "start": "2026-10-23 06:38:13.437965+00:00",
+          "end": "2026-10-23 06:38:13.998339+00:00"
+        },
+        "source_showdown.transform": {
+          "start": "2026-10-23 06:38:13.428904+00:00",
+          "end": "2026-10-23 06:38:13.772360+00:00"
+        },
+        "source_pokeapi.transform": {
+          "start": "2026-10-23 06:38:16.162344+00:00",
+          "end": "2026-10-23 06:38:17.403589+00:00"
+        },
+        "merge_validate": {
+          "start": "2026-10-23 06:38:17.967315+00:00",
+          "end": "2026-10-23 06:38:18.326455+00:00"
+        },
+        "load_postgres": {
+          "start": "2026-10-23 06:38:19.223272+00:00",
+          "end": "2026-10-23 06:38:19.223272+00:00"
+        },
+        "quality_route": {
+          "start": "2026-10-23 06:38:19.030444+00:00",
+          "end": "2026-10-23 06:38:19.256332+00:00"
+        },
+        "quarantine": {
+          "start": "2026-10-23 06:38:20.140095+00:00",
+          "end": "2026-10-23 06:38:20.438497+00:00"
+        },
+        "finish": {
+          "start": "2026-10-23 06:38:21.403328+00:00",
+          "end": "2026-10-23 06:38:21.698070+00:00"
+        },
+        "start": {
+          "start": "2026-10-23 06:38:08.947296+00:00",
+          "end": "2026-10-23 06:38:09.220370+00:00"
+        },
+        "source_showdown.extract": {
+          "start": "2026-10-23 06:38:10.109952+00:00",
+          "end": "2026-10-23 06:38:12.544303+00:00"
+        },
+        "source_pokemondb.extract": {
+          "start": "2026-10-23 06:38:10.103386+00:00",
+          "end": "2026-10-23 06:38:12.782365+00:00"
+        },
+        "source_pokeapi.extract": {
+          "start": "2026-10-23 06:38:10.115374+00:00",
+          "end": "2026-10-23 06:38:15.710159+00:00"
+        }
+      },
+      "sources": [
+        {
+          "run_id": "quality_063718",
+          "source": "pokeapi",
+          "status": "SUCCESS",
+          "row_count": 151,
+          "message": "",
+          "started_at": "2026-10-23T06:38:10.395321+00:00",
+          "finished_at": "2026-10-23T06:38:17.284596+00:00"
+        },
+        {
+          "run_id": "quality_063718",
+          "source": "pokemondb",
+          "status": "SUCCESS",
+          "row_count": 151,
+          "message": "",
+          "started_at": "2026-10-23T06:38:10.371757+00:00",
+          "finished_at": "2026-10-23T06:38:13.963399+00:00"
+        },
+        {
+          "run_id": "quality_063718",
+          "source": "showdown",
+          "status": "SUCCESS",
+          "row_count": 151,
+          "message": "",
+          "started_at": "2026-10-23T06:38:10.370852+00:00",
+          "finished_at": "2026-10-23T06:38:13.734919+00:00"
+        }
+      ]
+    },
+    {
+      "name": "final",
+      "run": {
+        "run_id": "final_063718",
+        "started_at": "2026-10-23T06:38:28.229434+00:00",
+        "finished_at": "2026-10-23T06:38:40.690707+00:00",
+        "status": "SUCCESS",
+        "scenario": {
+          "demo_fail_source": "none",
+          "demo_bad_quality": false
+        },
+        "summary": {
+          "input_rows": 453,
+          "unique_rows": 151,
+          "duplicates_removed": 302,
+          "conflict_rows": 0,
+          "successful_sources": [
+            "pokeapi",
+            "pokemondb",
+            "showdown"
+          ],
+          "missing_ids": [],
+          "errors": [],
+          "passed": true
+        }
+      },
+      "before": {
+        "canonical_rows": 151,
+        "source_observations": 453,
+        "content_sha256": "3a281b54c6523770566a8d484041c49361d0dc9a37dc74359ca1891fac3a11ee"
+      },
+      "after": {
+        "canonical_rows": 151,
+        "source_observations": 453,
+        "content_sha256": "1eb8a65add3e092200339818fa669e0ca4991dc6ea30d6a7b9d3a3ac3caccc20"
+      },
+      "task_states": {
+        "source_showdown.extract": "success",
+        "source_pokemondb.extract": "success",
+        "source_pokeapi.transform": "success",
+        "source_showdown.transform": "success",
+        "source_pokemondb.transform": "success",
+        "source_pokeapi.extract": "success",
+        "start": "success",
+        "quality_route": "success",
+        "merge_validate": "success",
+        "load_postgres": "success",
+        "quarantine": "skipped",
+        "finish": "success"
+      },
+      "task_timings": {
+        "source_showdown.extract": {
+          "start": "2026-10-23 06:38:29.100706+00:00",
+          "end": "2026-10-23 06:38:31.546878+00:00"
+        },
+        "source_pokemondb.extract": {
+          "start": "2026-10-23 06:38:29.097232+00:00",
+          "end": "2026-10-23 06:38:31.908628+00:00"
+        },
+        "source_pokeapi.transform": {
+          "start": "2026-10-23 06:38:35.468307+00:00",
+          "end": "2026-10-23 06:38:36.705178+00:00"
+        },
+        "source_showdown.transform": {
+          "start": "2026-10-23 06:38:32.213039+00:00",
+          "end": "2026-10-23 06:38:32.567756+00:00"
+        },
+        "source_pokemondb.transform": {
+          "start": "2026-10-23 06:38:32.287816+00:00",
+          "end": "2026-10-23 06:38:32.855358+00:00"
+        },
+        "source_pokeapi.extract": {
+          "start": "2026-10-23 06:38:29.100308+00:00",
+          "end": "2026-10-23 06:38:34.414533+00:00"
+        },
+        "start": {
+          "start": "2026-10-23 06:38:28.011778+00:00",
+          "end": "2026-10-23 06:38:28.259649+00:00"
+        },
+        "quality_route": {
+          "start": "2026-10-23 06:38:38.129675+00:00",
+          "end": "2026-10-23 06:38:38.367320+00:00"
+        },
+        "merge_validate": {
+          "start": "2026-10-23 06:38:36.987799+00:00",
+          "end": "2026-10-23 06:38:37.352683+00:00"
+        },
+        "load_postgres": {
+          "start": "2026-10-23 06:38:39.246445+00:00",
+          "end": "2026-10-23 06:38:39.728504+00:00"
+        },
+        "quarantine": {
+          "start": "2026-10-23 06:38:38.330661+00:00",
+          "end": "2026-10-23 06:38:38.330661+00:00"
+        },
+        "finish": {
+          "start": "2026-10-23 06:38:40.369504+00:00",
+          "end": "2026-10-23 06:38:40.740290+00:00"
+        }
+      },
+      "sources": [
+        {
+          "run_id": "final_063718",
+          "source": "pokeapi",
+          "status": "SUCCESS",
+          "row_count": 151,
+          "message": "",
+          "started_at": "2026-10-23T06:38:29.349340+00:00",
+          "finished_at": "2026-10-23T06:38:36.580486+00:00"
+        },
+        {
+          "run_id": "final_063718",
+          "source": "pokemondb",
+          "status": "SUCCESS",
+          "row_count": 151,
+          "message": "",
+          "started_at": "2026-10-23T06:38:29.348897+00:00",
+          "finished_at": "2026-10-23T06:38:32.818354+00:00"
+        },
+        {
+          "run_id": "final_063718",
+          "source": "showdown",
+          "status": "SUCCESS",
+          "row_count": 151,
+          "message": "",
+          "started_at": "2026-10-23T06:38:29.348904+00:00",
+          "finished_at": "2026-10-23T06:38:32.531537+00:00"
+        }
+      ]
+    }
+  ]
+}

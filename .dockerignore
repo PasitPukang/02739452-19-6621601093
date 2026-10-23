@@ -1,0 +1,10 @@
+.git
+.env
+.venv
+.tools
+.agents
+.codex
+graphify-out
+**/__pycache__
+data
+powerbi/export

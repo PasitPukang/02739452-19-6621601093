@@ -1,0 +1,32 @@
+{
+  "dashboard_checks": "passed",
+  "canonical_rows": 151,
+  "pagination": true,
+  "type_filter": true,
+  "name_filter": true,
+  "invalid_filter_http_status": 400,
+  "mobile_overflow": false,
+  "airflow_authenticated": true,
+  "airflow_runtime_exceptions": [
+    {
+      "text": "Uncaught",
+      "description": "TypeError: Cannot set properties of undefined (setting 'autocomplete')\n    at HTMLDocument.<anonymous> (http://localhost:8089/static/dist/main.23ed6e370c0e4b6eb126.js:2:5286)\n    at e (http://localhost:8089/static/appbuilder/js/jquery-latest.js:2:30038)\n    at t (http://localhost:8089/static/appbuilder/js/jquery-latest.js:2:30340)",
+      "url": "http://localhost:8089/static/appbuilder/js/jquery-latest.js"
+    },
+    {
+      "text": "Uncaught",
+      "description": "TypeError: Cannot set properties of undefined (setting 'autocomplete')\n    at HTMLDocument.<anonymous> (http://localhost:8089/static/dist/dags.d52b67cc37e3266ce4b8.js:2:8359)\n    at e (http://localhost:8089/static/appbuilder/js/jquery-latest.js:2:30038)\n    at t (http://localhost:8089/static/appbuilder/js/jquery-latest.js:2:30340)",
+      "url": "http://localhost:8089/static/appbuilder/js/jquery-latest.js"
+    },
+    {
+      "text": "Uncaught",
+      "description": "TypeError: Cannot set properties of undefined (setting 'autocomplete')\n    at HTMLDocument.<anonymous> (http://localhost:8089/static/dist/main.23ed6e370c0e4b6eb126.js:2:5286)\n    at e (http://localhost:8089/static/appbuilder/js/jquery-latest.js:2:30038)\n    at t (http://localhost:8089/static/appbuilder/js/jquery-latest.js:2:30340)",
+      "url": "http://localhost:8089/static/appbuilder/js/jquery-latest.js"
+    },
+    {
+      "text": "Uncaught",
+      "description": "TypeError: Cannot set properties of undefined (setting 'autocomplete')\n    at HTMLDocument.<anonymous> (http://localhost:8089/static/dist/main.23ed6e370c0e4b6eb126.js:2:5286)\n    at e (http://localhost:8089/static/appbuilder/js/jquery-latest.js:2:30038)\n    at t (http://localhost:8089/static/appbuilder/js/jquery-latest.js:2:30340)",
+      "url": "http://localhost:8089/static/appbuilder/js/jquery-latest.js"
+    }
+  ]
+}

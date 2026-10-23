@@ -1,0 +1,27 @@
+{
+  "checked_at": "2026-10-23T06:51:28.029176+00:00",
+  "project": "pokedex_cleancheck",
+  "fresh_source_without_data_or_cache": true,
+  "dag_import_errors": [],
+  "dashboard": {
+    "database_rows": 0,
+    "http_status": 200
+  },
+  "airflow_health": {
+    "dag_processor": {
+      "latest_dag_processor_heartbeat": null,
+      "status": null
+    },
+    "metadatabase": {
+      "status": "healthy"
+    },
+    "scheduler": {
+      "latest_scheduler_heartbeat": "2026-10-23T06:51:28.574512+00:00",
+      "status": "healthy"
+    },
+    "triggerer": {
+      "latest_triggerer_heartbeat": null,
+      "status": null
+    }
+  }
+}

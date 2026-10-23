@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="th"><meta charset="utf-8"><title>19_6621601093_summary</title>
+<style>
+@page{size:A4;margin:12mm}*{box-sizing:border-box}body{width:186mm;margin:0;color:#17283d;font:10.2pt/1.48 "Leelawadee UI","Tahoma",sans-serif}h1{font-size:23pt;line-height:1.1;margin:0 0 4mm;color:#102e50}h2{font-size:14pt;margin:4mm 0 2mm;color:#163f68}h3{font-size:11pt;margin:3mm 0 1mm}p{margin:1.5mm 0}a{color:#175e9b;overflow-wrap:anywhere}code{font:9pt Consolas,monospace}table{width:100%;border-collapse:collapse;margin:2mm 0;font-size:9.3pt}td,th{border:1px solid #cfdae4;padding:1.5mm 2mm;text-align:left;vertical-align:top}th{background:#eaf1f7}figure{margin:3mm 0}img{display:block;width:100%;height:auto;border:1px solid #d5dfe8}figcaption,.small{font-size:8.6pt;color:#4e6177;line-height:1.4}.page{break-after:page;position:relative;min-height:270mm;padding-bottom:7mm}.page:last-child{break-after:auto}.footer{position:absolute;bottom:0;left:0;right:0;border-top:1px solid #d9e1e9;padding-top:2mm;font-size:8pt;color:#53677b;display:flex;justify-content:space-between}.lead{background:#edf5fb;padding:3mm;border-left:3px solid #2074ab}.repo{font-size:9pt}.pill{font-size:10pt;color:#126249;font-weight:bold}.gridshot{max-height:76mm;object-fit:contain;background:#f8fafc}.dashshot{max-height:95mm;object-fit:contain;background:#f8fafc}ul{margin:1mm 0;padding-left:5mm}li{margin:1mm 0}
+</style>
+<section class="page">
+<p class="small">02739452 · Big Data · ลำดับที่ 19 · รหัสนิสิต 6621601093 · 23 ตุลาคม 2026</p>
+<h1>Pokédex Observatory</h1>
+<p class="lead"><b>หมวด:</b> ข้อมูล Pokémon &nbsp; <b>ขอบเขต:</b> National Pokédex หมายเลข 1–151 เฉพาะร่างปกติ<br>รวบรวมชื่อ ประเภท และค่าสถิติพื้นฐานปัจจุบันจาก 3 แหล่ง เพื่อเปรียบเทียบประเภทและอันดับค่าสถิติ</p>
+<p class="repo"><b>Public GitHub repository:</b><br><a href="https://github.com/PasitPukang/02739452-19-6621601093">https://github.com/PasitPukang/02739452-19-6621601093</a></p>
+<table><tr><th>แหล่งข้อมูล</th><th>การดึงและการใช้ข้อมูล</th></tr>
+<tr><td>1. <a href="https://pokemondb.net/pokedex/all">Pokémon Database — /pokedex/all</a></td><td>Scrape ตาราง HTML ด้วย Python HTMLParser; ไม่ใช้ Selenium</td></tr>
+<tr><td>2. <a href="https://pokeapi.co/api/v2/pokemon?limit=151&amp;offset=0">PokéAPI — รายการและรายละเอียด Pokémon</a></td><td>REST API; cache รายละเอียด 24 ชั่วโมง</td></tr>
+<tr><td>3. <a href="https://play.pokemonshowdown.com/data/pokedex.json">Pokémon Showdown — pokedex.json</a></td><td>Public JSON; เลือกหมายเลข 1–151 และตัด forms</td></tr></table>
+<p class="small">ตรวจ robots.txt ทุก origin และเคารพ Crawl-delay ก่อนร้องขอ เก็บเฉพาะข้อมูลตัวละครเกม ไม่มีข้อมูลบุคคล ไม่ใช่ค่าสถิติจากเกม Gen 1 ดั้งเดิม และไม่รวม Mega/Regional forms</p>
+<h2>1. ภาพรวมและระดับที่ทำได้</h2>
+<p class="pill">ทำฟังก์ชันครบระดับ 1–3 และโบนัสหน้าสถานะ Pipeline</p>
+<p>Airflow รัน 3 TaskGroups ขนาน แต่ละกลุ่ม extract → transform จากนั้น merge schema เดียว ตรวจคุณภาพ แล้ว branch ไปโหลด PostgreSQL ด้วย UPSERT หรือ quarantine เมื่อไม่ผ่าน เว็บที่พัฒนาเองอ่าน PostgreSQL โดยตรงผ่าน Python/SQLAlchemy</p>
+<figure><img src="../audit/screenshots/airflow-graph.png" alt="Airflow Graph view รอบ final_063718 แสดงสาม TaskGroup และทางแยก quality"><figcaption>ภาพ 1 — Graph view จริง: final_063718 สำเร็จ; load_postgres สีเขียว และ quarantine ถูก skip สีชมพู มี 3 TaskGroups / 12 tasks</figcaption></figure>
+<div class="footer"><span>Pokédex Observatory · 19 / 6621601093</span><span>1 / 3</span></div>
+</section>
+<section class="page">
+<h2>เว็บ Dashboard และหลักฐานการรัน</h2>
+<p>เว็บมี KPI 4 ค่า ตารางแบ่งหน้า ค้นชื่อ/หมายเลข กรองประเภท แหล่งข้อมูล และค่ารวมขั้นต่ำ พร้อมกราฟจำนวนตามประเภทและ 10 อันดับค่าสถิติสูงสุด หน้า Pipeline แสดงสถานะทั้งสามแหล่ง ประวัติรัน และเหตุผลที่ปฏิเสธข้อมูล</p>
+<figure><img class="dashshot" src="../audit/screenshots/dashboard.png" alt="Dashboard ข้อมูลจริง 151 รายการ KPI และกราฟสองกราฟ"><figcaption>ภาพ 2 — เว็บอ่านข้อมูล PostgreSQL จริง: 151 ตัว, ค่าสถิติรวมเฉลี่ย 407.6, conflict 0 ตัว; ตารางและหน้า Pipeline ดูภาพเพิ่มเติมได้ใน audit/screenshots/</figcaption></figure>
+<figure><img class="gridshot" src="../audit/screenshots/airflow-grid.png" alt="Airflow Grid view แสดงประวัติรันและ task states"><figcaption>ภาพ 3 — Grid view จริง: คอลัมน์ซ้ายสุดเป็นรอบพัฒนาที่ล้มเหลวก่อนแก้ reserved run_id; รอบทดสอบแหล่งล่มมี source_pokeapi สีแดงแต่ finish เขียว; รอบข้อมูลเสีย load สีชมพูและ quarantine เขียว</figcaption></figure>
+<table><tr><th>รอบทดสอบจริง (23 ต.ค.)</th><th>ผลลัพธ์ข้อมูล / ตารางหลัก</th></tr>
+<tr><td>rerun_063718 — รันซ้ำ</td><td>SUCCESS · 453 → 151 · ตารางยังคง 151 แถว</td></tr>
+<tr><td>partial_063718 — จำลอง PokéAPI ล่ม</td><td>PARTIAL · 302 → 151 จากอีก 2 แหล่ง · ตาราง 151</td></tr>
+<tr><td>quality_063718 — จำลอง total ผิด</td><td>REJECTED · load ถูก skip · hash ข้อมูลหลักไม่เปลี่ยน</td></tr>
+<tr><td>final_063718 — คืนสู่ค่าปกติ</td><td>SUCCESS · 453 → 151 · ทั้ง 3 แหล่งผ่าน แหล่งละ 151</td></tr></table>
+<p class="small">เวลารอบทดสอบ 13:37–13:38 น. เวลาไทย; source extraction รอบสุดท้ายเริ่มพร้อมกันประมาณ 13:38:29.35 น. ข้อมูลซ้ำข้ามแหล่งลดลง 302 รายการด้วย dex_id ตรวจหลักฐาน task states, เวลา และ SHA-256 ใน audit/pokemon_validation.json สถานการณ์ล่ม/ข้อมูลเสียเป็นการจำลองที่ระบุในพารามิเตอร์ ไม่ใช่ outage จริง</p>
+<div class="footer"><span>หลักฐานภาพจากระบบจริง ไม่มีข้อมูลตัวอย่างบนเว็บ</span><span>2 / 3</span></div>
+</section>
+<section class="page">
+<h2>2. ปัญหาที่พบ การหาสาเหตุ และวิธีแก้</h2>
+<table><tr><th style="width:24%">ปัญหา / อาการ</th><th>การหาสาเหตุ</th><th>วิธีแก้และการตรวจผล</th></tr>
+<tr><td><b>1. Airflow task รันไม่ผ่าน</b><br>รอบแรก baseline_full ล้มเหลว</td><td>อ่าน task log พบชื่ออาร์กิวเมนต์ <code>run_id</code> ชนกับ context ที่ Airflow สงวนไว้ แม้ไฟล์ DAG import ได้</td><td>เปลี่ยนชื่ออาร์กิวเมนต์ที่ส่งต่อเป็น <code>batch_id</code>; ดึง run_id จริงจาก context ที่ start เท่านั้น เพิ่ม regression check และรัน DAG จริงใหม่จน finish สำเร็จ</td></tr>
+<tr><td><b>2. หมายเลขซ้ำจากรูปแบบข้อมูลต่างกัน</b><br>3 แหล่งรวมกัน 453 รายการ และหน้าเว็บมีหลาย forms ต่อหมายเลข</td><td>เปรียบเทียบหมายเลขและ rows ของ HTML/JSON พบ Mega/Regional forms ใช้ dex_id เดียวกัน และชื่อ/ชื่อ stat ไม่เหมือนกันข้ามแหล่ง</td><td>ตัด forms ก่อน normalize, map stats เป็น 6 ฟิลด์เดียวกัน รวมด้วย dex_id; เลือก stats ตาม PokéAPI → Database → Showdown และเก็บ provenance/conflicts ได้ 151 ตัวตรงกัน ใช้ UPSERT ไม่เพิ่มแถวเมื่อรันซ้ำ</td></tr>
+</table>
+<h3>การป้องกันข้อมูลเสียและแหล่งล่ม</h3>
+<p>retry 1 ครั้งแล้วบันทึกสถานะแหล่งนั้น; transform และ merge ใช้ all_done เพื่อประมวลผลแหล่งที่เหลือ กฎตรวจคือ ID 1–151, ชื่อไม่ว่าง, ประเภทถูกต้อง 1–2 ประเภท, stats เป็นจำนวนเต็ม 1–255, total ตรงผลรวม, ไม่มี ID ซ้ำภายในแหล่ง และผลรวมอย่างน้อย 100 ตัว หากไม่ผ่านจะ quarantine แทนการเขียนทับข้อมูลหลัก</p>
+<p class="small">REJECTED คือสถานะข้อมูล; DAG อาจสำเร็จเพราะจัดการ quarantine เรียบร้อย ส่วนการโหลดล้มเหลวจริงจะทำให้ final task fail ไม่ปิดบังเป็นสำเร็จ</p>
+<h2>3. การวางแผนและจัดลำดับงาน</h2>
+<p>จัดงานให้ได้เส้นทางขั้นต่ำก่อน แล้วเพิ่มความทนทานตามเกณฑ์ โดยกำหนดสัดส่วนเวลาที่ตั้งใจใช้ดังนี้:</p>
+<table><tr><th>สัดส่วนเวลา</th><th>งานและจุดตรวจ</th></tr>
+<tr><td>10%</td><td>ยืนยันหัวข้อ / 3 แหล่ง / robots และทดลองให้ได้อย่างน้อย 100 ตัว</td></tr>
+<tr><td>40%</td><td>ETL → PostgreSQL ให้ได้ระดับ 1 ก่อน; ต่อ TaskGroups, UPSERT, dedup และ quality branch</td></tr>
+<tr><td>25%</td><td>เว็บอ่านฐานจริง ตาราง กราฟ KPI ตัวกรอง และสถานะ Pipeline</td></tr>
+<tr><td>25%</td><td>ทดสอบรันซ้ำ/แหล่งล่ม/ข้อมูลเสีย เริ่มระบบจากโฟลเดอร์ใหม่ เก็บภาพ ทำ PDF และตรวจไฟล์ก่อนส่ง</td></tr></table>
+<p><b>สิ่งที่ตัดออก:</b> ไม่ทำระบบทำนาย/ต่อสู้ Pokémon, login ผู้ใช้, แอนิเมชัน และ Power BI เพราะไม่ช่วยเกณฑ์งานนี้ ใช้เว็บหน้าเดียวกับไลบรารีมาตรฐานเพื่อลด dependency ไม่ใช้ Selenium ตามข้อกำหนด และไม่ตั้ง schedule อัตโนมัติเพื่อลดการร้องขอบริการภายนอก</p>
+<h3>การตรวจรับและวิธีเปิดตรวจ</h3>
+<p>Unit tests <b>21 ผ่าน</b>; integration DAG จริง <b>4 สถานการณ์ผ่าน</b>; browser ตรวจค้นหา/ตัวกรอง/แบ่งหน้า/จอมือถือผ่าน; ทดสอบ build จาก source ใหม่โดยไม่มี dataset/cache แล้ว PostgreSQL, scheduler และเว็บเริ่มได้ DAG ไม่มี import errors หลักฐานอยู่ใน audit/</p>
+<p>Clone repo → คัดลอก <code>.env.example</code> เป็น <code>.env</code> → กำหนดรหัสสองค่า → <code>docker compose up -d --build</code> → เปิด Airflow <b>localhost:8089</b> → unpause/trigger <code>pokemon_pipeline</code> → เปิดเว็บ <b>localhost:8091</b> ดูขั้นตอนเต็มใน README.md</p>
+<p class="small"><b>ข้อจำกัด:</b> ต้องใช้อินเทอร์เน็ต; รอบแรกดึงรายละเอียด 151 ตัวจึงอาจใช้หลายนาที หากทุกแหล่งล่มหรือข้อมูลเหลือน้อยกว่า 100 ตัว ระบบปฏิเสธรอบใหม่และคงข้อมูลรอบที่ผ่านล่าสุด ไม่มีการรับประกันว่ารูปแบบเว็บภายนอกจะไม่เปลี่ยน</p>
+<div class="footer"><span>ชื่อไฟล์ส่ง: 19_6621601093_summary.pdf · repo URL หน้า 1</span><span>3 / 3</span></div>
+</section>
+</html>
