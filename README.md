@@ -44,6 +44,14 @@ docker compose ps --all
 
 พอร์ตเผยแพร่เฉพาะ localhost Dashboard อ่านตาราง PostgreSQL ผ่าน SQLAlchemy โดยตรง ไม่อ่าน CSV/JSON มาแทนฐานข้อมูล ไม่มีการนำ `.env` ไปแสดงในเว็บ
 
+## ใช้เว็บครั้งแรก
+
+เว็บใช้ธีม Pokémon พร้อมคู่มือ 3 ขั้นตอน กด **เริ่มสำรวจโปเกมอน** แล้วพิมพ์ชื่อ/หมายเลข หรือกดปุ่มประเภทที่มีภาพตัวละคร กราฟและตารางปรับอัตโนมัติ กด **ล้างตัวกรอง** เพื่อกลับมาดูทั้งหมด ตารางแสดงครั้งละ 20 ตัว กด **ถัดไป** เพื่อดูเพิ่ม และกด **3 แหล่ง** เพื่อดูต้นทางของแต่ละตัว
+
+ตัวเลือกแหล่งข้อมูล ค่าพลังขั้นต่ำ และการเรียงลำดับอยู่ใน **ตัวเลือกเพิ่มเติม** มีคำอธิบาย HP/ATK/DEF/SPD สำหรับผู้เริ่มต้น และเปิด Airflow ได้จาก **สถานะข้อมูล → รายละเอียด Pipeline สำหรับผู้ตรวจ**
+
+หน้าโชว์ตัวละครเลือกได้ครบ **151 ตัว** ใช้ลูกศร ปุ่มภาพตัวโปรด หรือรายการเลือก ภาพเลื่อนเข้าพร้อมสีตามประเภทและแถบค่าสถิติ 6 ค่าที่อ่านจาก PostgreSQL กราฟค่อย ๆ แสดงผล ปุ่ม **ลดการเคลื่อนไหว** ปิดแอนิเมชันได้ และเคารพ `prefers-reduced-motion` ของระบบ รูป 151 ตัวเก็บใน repo จึงไม่ต้องโหลดรูปภายนอกตอนใช้งาน ภาพมาจาก [PokeAPI/sprites](https://github.com/PokeAPI/sprites); สิทธิ์ภาพเป็นของ The Pokémon Company ตาม `web/assets/POKEAPI_LICENCE.txt` ใช้เพื่อการศึกษา แนวทางหน้าโชว์ตัวละครอ้างอิง [แนวคิดของ AC1design](https://dribbble.com/shots/15128634-Pokemon-Pokedex-Website-Redesign-Concept)
+
 ## รัน DAG
 
 เลือก **`pokemon_pipeline`** เปิดสวิตช์เป็น Unpaused แล้วกด Trigger ด้วยค่าเริ่มต้น หรือใช้:
@@ -141,7 +149,7 @@ docker compose exec airflow-scheduler python /opt/airflow/project/tests/check_li
 
 สคริปต์ตรวจ rerun/partial/rejected/final, ยืนยัน 151 แถว, branch states และ SHA-256 ว่ารอบ rejected ไม่เปลี่ยนข้อมูล หลักฐานถูกเขียนใน `audit/pokemon_validation.json`
 
-Browser checks ใช้ Edge DevTools ผ่าน `audit/capture.mjs` ไม่ใช้ Selenium; เป็นเครื่องมือเก็บหลักฐานของผู้พัฒนา ไม่ใช่ dependency ของ dashboard
+Browser checks ใช้ Edge DevTools ผ่าน `audit/capture.mjs` ไม่ใช้ Selenium; ตรวจปุ่มเลือกประเภท/ล้างตัวกรอง ภาพจริง แอนิเมชัน/ลดการเคลื่อนไหว และจอ 375/390/768/1024/1440px เป็นเครื่องมือเก็บหลักฐานของผู้พัฒนา ไม่ใช่ dependency ของ dashboard ดู `audit/browser_validation.json` และ `audit/fresh_start_validation.json`
 
 ## หยุดและเปิดต่อ
 

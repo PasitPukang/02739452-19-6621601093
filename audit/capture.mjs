@@ -33,8 +33,38 @@ if(process.argv.includes('--pdf-only')){
 }else{
   await navigate('http://localhost:8091');
   await wait("document.querySelector('#k-total')?.textContent==='151'",'151 actual database records');
+  assert.equal(await evaluate("document.querySelectorAll('.how .step').length"),3);
+  await wait("[...document.images].every(i=>i.complete&&i.naturalWidth>0)",'Bundled Pokemon art');
+  assert.equal(await evaluate("document.querySelector('#character-select').options.length"),151);
+  for(const id of [1,6,25,150,151]){
+    await evaluate(`document.querySelector('#character-select').value='${id}';document.querySelector('#character-select').dispatchEvent(new Event('change'))`);
+    assert.equal(await evaluate(`fetch('/api/pokemon?q=${id}').then(r=>r.json()).then(d=>{const p=d.rows.find(r=>r.dex_id===${id});return p.name===document.querySelector('#welcome').textContent&&String(p.total)===document.querySelector('#character-total').textContent&&[...document.querySelectorAll('#character-stats strong')].map(v=>Number(v.textContent)).join(',')===[p.hp,p.attack,p.defense,p.sp_attack,p.sp_defense,p.speed].join(',')})`),true,'Character stats '+id);
+  }
+  await evaluate("document.querySelector('#character-next').click()");
+  assert.equal(await evaluate("document.querySelector('#character-select').value"),'1','Last wraps to first');
+  await evaluate("document.querySelector('#character-prev').click()");
+  assert.equal(await evaluate("document.querySelector('#character-select').value"),'151','First wraps to last');
+  await evaluate("document.querySelector('.character-thumb[data-dex=\"25\"]').click()");
+  await wait("document.querySelector('.hero-art>img').complete&&document.querySelector('.hero-art>img').naturalWidth>0",'Pikachu art');
+  await new Promise(r=>setTimeout(r,650));
+  await screenshot('showcase-pikachu.png');
+  await evaluate("document.querySelector('.character-thumb[data-dex=\"6\"]').click()");
+  await wait("document.querySelector('.hero-art>img').complete&&document.querySelector('.hero-art>img').naturalWidth>0",'Charizard art');
+  await new Promise(r=>setTimeout(r,650));
+  await screenshot('showcase.png');
   assert.equal(await evaluate("document.querySelectorAll('#pokemon-rows tr').length"),20);
   await screenshot('dashboard.png');
+  await evaluate("document.querySelector('[data-type=fire].type-pick').click()");
+  await wait("document.querySelector('[data-type=fire].type-pick').getAttribute('aria-pressed')==='true'",'quick type choice');
+  assert.equal(await evaluate("[...document.querySelectorAll('#pokemon-rows tr')].every(r=>r.textContent.includes('fire'))"),true);
+  await evaluate("document.querySelector('#clear-filters').click()");
+  await wait("document.querySelector('#k-filtered').textContent==='151'",'clear filters');
+  await evaluate("document.querySelector('#motion').click()");
+  assert.equal(await evaluate("getComputedStyle(document.querySelector('.hero-art>img')).animationName"),'none');
+  await evaluate("document.querySelector('#motion').click()");
+  await call('Emulation.setEmulatedMedia',{features:[{name:'prefers-reduced-motion',value:'reduce'}]});
+  assert.equal(await evaluate("getComputedStyle(document.querySelector('.hero-art>img')).animationName"),'none');
+  await call('Emulation.setEmulatedMedia',{features:[]});
   await evaluate("document.querySelector('#next').click()");
   assert.match(await evaluate("document.querySelector('#page-info').textContent"),/21/);
   await evaluate("document.querySelector('#type').value='fire';document.querySelector('#type').dispatchEvent(new Event('input',{bubbles:true}))");
@@ -45,6 +75,8 @@ if(process.argv.includes('--pdf-only')){
   assert.equal(await evaluate("fetch('/api/pokemon?sort=invalid').then(r=>r.status)"),400);
   await evaluate("document.querySelector('#filters').reset();document.querySelector('#refresh').click()");
   await wait("document.querySelector('#k-filtered').textContent==='151'",'filter reset');
+  await evaluate("document.querySelector('#overview').scrollIntoView()");
+  await screenshot('analytics.png');
   await evaluate("document.querySelector('#catalog').scrollIntoView()");
   await screenshot('catalog.png');
   await evaluate("document.querySelector('#pipeline').scrollIntoView()");
@@ -53,6 +85,10 @@ if(process.argv.includes('--pdf-only')){
   await evaluate('scrollTo(0,0)');
   assert.equal(await evaluate('document.documentElement.scrollWidth<=innerWidth'),true,'mobile page overflow');
   await screenshot('dashboard-mobile.png');
+  for(const width of [375,768,1024,1440]){
+    await call('Emulation.setDeviceMetricsOverride',{width,height:900,deviceScaleFactor:1,mobile:width<650});
+    assert.equal(await evaluate('document.documentElement.scrollWidth<=innerWidth'),true,'Layout overflow at '+width);
+  }
   assert.equal(errors.length,0,'Dashboard exceptions: '+JSON.stringify(errors));
   await call('Emulation.setDeviceMetricsOverride',{width:1440,height:1050,deviceScaleFactor:1,mobile:false});
   const env=await readFile('.env','utf8');
@@ -73,7 +109,7 @@ if(process.argv.includes('--pdf-only')){
   await navigate('http://localhost:8089/dags/pokemon_pipeline/grid');
   await new Promise(r=>setTimeout(r,3000));
   await screenshot('airflow-grid.png');
-  await writeFile('audit/browser_validation.json',JSON.stringify({dashboard_checks:'passed',canonical_rows:151,pagination:true,type_filter:true,name_filter:true,invalid_filter_http_status:400,mobile_overflow:false,airflow_authenticated:true,airflow_runtime_exceptions:errors},null,2));
+  await writeFile('audit/browser_validation.json',JSON.stringify({checked_at:new Date().toISOString(),dashboard_checks:'passed',canonical_rows:151,character_choices:151,character_stats_match_database:true,character_navigation_wraps:true,character_thumbnail_selection:true,pagination:true,type_filter:true,name_filter:true,quick_type_buttons:true,reset_filters:true,beginner_guide_steps:3,bundled_art_loaded:true,motion_toggle:true,prefers_reduced_motion:true,responsive_widths:[375,390,768,1024,1440],invalid_filter_http_status:400,mobile_overflow:false,airflow_authenticated:true,airflow_runtime_exceptions:errors},null,2));
   console.log('Browser checks passed: 151 rows, pagination, type/name filters, invalid-filter 400, mobile layout, authenticated Airflow screenshots');
 }
 socket.close();

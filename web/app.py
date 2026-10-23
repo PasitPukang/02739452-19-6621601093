@@ -15,7 +15,7 @@ class Handler(BaseHTTPRequestHandler):
         if path.path == "/":
             content = Path(__file__).with_name("index.html").read_bytes()
             content_type = "text/html; charset=utf-8"
-        elif path.path in {"/assets/1.png", "/assets/4.png", "/assets/7.png", "/assets/25.png"}:
+        elif path.path in {f"/assets/{n}.png" for n in range(1, 152)}:
             content = (Path(__file__).parent / path.path.lstrip("/")).read_bytes()
             content_type = "image/png"
         elif path.path in {"/api/status", "/api/pokemon", "/api/pipeline"}:

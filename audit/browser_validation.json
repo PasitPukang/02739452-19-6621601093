@@ -1,9 +1,23 @@
 {
+  "checked_at": "2026-10-23T07:15:41.931Z",
   "dashboard_checks": "passed",
   "canonical_rows": 151,
   "pagination": true,
   "type_filter": true,
   "name_filter": true,
+  "quick_type_buttons": true,
+  "reset_filters": true,
+  "beginner_guide_steps": 3,
+  "bundled_art_loaded": true,
+  "motion_toggle": true,
+  "prefers_reduced_motion": true,
+  "responsive_widths": [
+    375,
+    390,
+    768,
+    1024,
+    1440
+  ],
   "invalid_filter_http_status": 400,
   "mobile_overflow": false,
   "airflow_authenticated": true,
@@ -28,5 +42,10 @@
       "description": "TypeError: Cannot set properties of undefined (setting 'autocomplete')\n    at HTMLDocument.<anonymous> (http://localhost:8089/static/dist/main.23ed6e370c0e4b6eb126.js:2:5286)\n    at e (http://localhost:8089/static/appbuilder/js/jquery-latest.js:2:30038)\n    at t (http://localhost:8089/static/appbuilder/js/jquery-latest.js:2:30340)",
       "url": "http://localhost:8089/static/appbuilder/js/jquery-latest.js"
     }
-  ]
+  ],
+  "character_choices": 151,
+  "character_stats_match_database": true,
+  "character_navigation_wraps": true,
+  "character_thumbnail_selection": true,
+  "all_character_art_http_checked": 151
 }
