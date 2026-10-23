@@ -1,0 +1,173 @@
+{
+  "checked_at": "2026-10-23T07:34:57.278000+00:00",
+  "initial_database_rows": 0,
+  "cases": [
+    {
+      "run": {
+        "run_id": "public_clone_first",
+        "started_at": "2026-10-23T07:35:02.431664+00:00",
+        "finished_at": "2026-10-23T07:37:14.013975+00:00",
+        "status": "SUCCESS",
+        "scenario": {
+          "demo_fail_source": "none",
+          "demo_bad_quality": false
+        },
+        "summary": {
+          "input_rows": 453,
+          "unique_rows": 151,
+          "duplicates_removed": 302,
+          "conflict_rows": 0,
+          "successful_sources": [
+            "pokeapi",
+            "pokemondb",
+            "showdown"
+          ],
+          "missing_ids": [],
+          "errors": [],
+          "passed": true
+        }
+      },
+      "source_results": [
+        {
+          "run_id": "public_clone_first",
+          "source": "pokeapi",
+          "status": "SUCCESS",
+          "row_count": 151,
+          "message": "",
+          "started_at": "2026-10-23T07:35:03.528816+00:00",
+          "finished_at": "2026-10-23T07:37:08.770474+00:00"
+        },
+        {
+          "run_id": "public_clone_first",
+          "source": "pokemondb",
+          "status": "SUCCESS",
+          "row_count": 151,
+          "message": "",
+          "started_at": "2026-10-23T07:35:03.460155+00:00",
+          "finished_at": "2026-10-23T07:35:07.707769+00:00"
+        },
+        {
+          "run_id": "public_clone_first",
+          "source": "showdown",
+          "status": "SUCCESS",
+          "row_count": 151,
+          "message": "",
+          "started_at": "2026-10-23T07:35:03.467967+00:00",
+          "finished_at": "2026-10-23T07:35:07.491584+00:00"
+        }
+      ],
+      "canonical_rows": 151,
+      "source_observations": 453,
+      "content_sha256": "1eb8a65add3e092200339818fa669e0ca4991dc6ea30d6a7b9d3a3ac3caccc20",
+      "dag_state": "success",
+      "task_states": {
+        "source_showdown.extract": "success",
+        "start": "success",
+        "source_pokemondb.extract": "success",
+        "quality_route": "success",
+        "source_pokeapi.transform": "success",
+        "source_showdown.transform": "success",
+        "source_pokemondb.transform": "success",
+        "source_pokeapi.extract": "success",
+        "merge_validate": "success",
+        "quarantine": "skipped",
+        "load_postgres": "success",
+        "finish": "success"
+      }
+    },
+    {
+      "run": {
+        "run_id": "public_clone_rerun",
+        "started_at": "2026-10-23T07:37:20.209828+00:00",
+        "finished_at": "2026-10-23T07:37:34.207305+00:00",
+        "status": "SUCCESS",
+        "scenario": {
+          "demo_fail_source": "none",
+          "demo_bad_quality": false
+        },
+        "summary": {
+          "input_rows": 453,
+          "unique_rows": 151,
+          "duplicates_removed": 302,
+          "conflict_rows": 0,
+          "successful_sources": [
+            "pokeapi",
+            "pokemondb",
+            "showdown"
+          ],
+          "missing_ids": [],
+          "errors": [],
+          "passed": true
+        }
+      },
+      "source_results": [
+        {
+          "run_id": "public_clone_rerun",
+          "source": "pokeapi",
+          "status": "SUCCESS",
+          "row_count": 151,
+          "message": "",
+          "started_at": "2026-10-23T07:37:21.264156+00:00",
+          "finished_at": "2026-10-23T07:37:28.866375+00:00"
+        },
+        {
+          "run_id": "public_clone_rerun",
+          "source": "pokemondb",
+          "status": "SUCCESS",
+          "row_count": 151,
+          "message": "",
+          "started_at": "2026-10-23T07:37:21.277636+00:00",
+          "finished_at": "2026-10-23T07:37:25.651747+00:00"
+        },
+        {
+          "run_id": "public_clone_rerun",
+          "source": "showdown",
+          "status": "SUCCESS",
+          "row_count": 151,
+          "message": "",
+          "started_at": "2026-10-23T07:37:21.264309+00:00",
+          "finished_at": "2026-10-23T07:37:24.384417+00:00"
+        }
+      ],
+      "canonical_rows": 151,
+      "source_observations": 453,
+      "content_sha256": "1eb8a65add3e092200339818fa669e0ca4991dc6ea30d6a7b9d3a3ac3caccc20",
+      "dag_state": "success",
+      "task_states": {
+        "source_showdown.extract": "success",
+        "source_pokemondb.extract": "success",
+        "start": "success",
+        "source_pokeapi.extract": "success",
+        "source_pokemondb.transform": "success",
+        "source_pokeapi.transform": "success",
+        "source_showdown.transform": "success",
+        "merge_validate": "success",
+        "finish": "success",
+        "quarantine": "skipped",
+        "quality_route": "success",
+        "load_postgres": "success"
+      }
+    }
+  ],
+  "started_at": "2026-10-23T07:33:03.198076+00:00",
+  "public_repository": "https://github.com/PasitPukang/02739452-19-6621601093",
+  "commit": "c2cea8e7a139300a1b9852a7a0c23a178a090bc4",
+  "fresh_database": true,
+  "no_copied_datasets_or_cache": true,
+  "no_agent_skills_present": true,
+  "fresh_credentials": true,
+  "port_override_only": true,
+  "fresh_airflow_admin_login": "passed",
+  "fresh_browser": {
+    "database_rows": 151,
+    "character_choices": 151,
+    "character_total": 534,
+    "table_first_page": 20,
+    "art_loaded": true,
+    "filter_and_reset": true,
+    "javascript_errors": 0
+  },
+  "completed_at": "2026-10-23T07:38:49.379447+00:00",
+  "runtime": "Docker Desktop Linux containers, PostgreSQL 16, Airflow 2.11.2",
+  "cold_start_note": "Docker base images were available locally; the source build, credentials, database and source cache were fresh."
+}
